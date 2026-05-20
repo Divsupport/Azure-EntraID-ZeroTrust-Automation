@@ -65,22 +65,96 @@ The architecture establishes secure identity segregation using **Microsoft Entra
 
 <h2>🚀 Step-by-Step Enterprise Implementation Walkthrough</h2>
 
-### 🏁 Phase 0: The Prerequisites Checklist. Before running any commands, To ensure my environment is configured correctly:
+### Phase 0: The Prerequisites Checklist. Before running any commands, To ensure my environment is configured correctly:
 
 - Open your Microsoft Entra Admin Center (entra.microsoft.com) using my Global Administrator account.
 - Open Windows PowerShell on my local machine by right-clicking it and selecting Run as Administrator.
-- Have a text editor open (like Notepad or VS Code) to prepare a CSV file.
+- Have a text editor open (like Notepad or VS Code) to prepare a CSV file.<br />
 
-<p align="center">
-<img src="Images/step 1.jpg" alt="Install the SDK Modules
-"/>
-</p>
+### Phase 1: Installing and Authenticating Microsoft Graph PowerShell
 
+Installing and Authenticating Microsoft Graph PowerShell. In the real enterprise world, cloud administrators do not click buttons to onboard hundreds of employees. They use the Microsoft Graph PowerShell SDK, which is the modern API engine for managing Microsoft Entra ID.
 
-
-
+Step 1.1: Install the SDK Modules
+Install-Module Microsoft.Graph -Scope CurrentUser -Force
 
 
+<img src="images/step 1.jpg"/> <br /><br />
+
+Step 1.2: Connect with Specific Permissions (Scopes). I must explicitly request permission from the tenant to read and write users and groups. I will run this command to initiate the secure login handshake:
+
+- Connect-MgGraph -Scopes "User.ReadWrite.All", "Group.ReadWrite.All", "Directory.AccessAsUser.All"
+
+<img src="images/step 2.jpg"/> <br /><br />
+
+- What happens next: A web browser window will automatically pop up asking you to log in. Log in using your Global Admin developer credentials.
+- Accept the Consent Prompt: You will see a checkbox that says "Consent on behalf of your organization." Check that box and click Accept. My PowerShell terminal will now display "Welcome to Microsoft Graph!"
+
+<img src="images/step 3.jpg"/> <br /><br />
+<img src="images/step 4.jpg"/> <br />
+
+It is now connected to the Organization.
+
+### Phase 2: Building Custom Security Attributes (Data Classification) Standard Azure roles and tags are visible to anyone in the company. To protect high-level executives, I will use Custom Security Attributes. These are highly secure, hidden data classifications that only authorized security administrators can see or modify.
+
+Step 2.1: Elevate these privileges in the Portal. Even as a Global Administrator, I do not have permission to create custom security attributes by default. I must explicitly assign myself the correct role.
+
+- Go to the Microsoft Entra Admin Center (entra.microsoft.com).
+
+<img src="images/step 5.jpg"/> <br />
+
+- Will navigate to: Manage -> Roles & admins -> Roles & admins.
+- I will search for: Attribute Definition Administrator. Click on it.
+
+<img src="images/step 6.jpg"/> <br />
+
+- Click + Add assignments, and I will give myself the assignment, and complete the assignment.
+
+<img src="images/step 7.jpg"/> <br />
+
+<img src="images/step 8.jpg"/> <br />
+
+<img src="images/step 9.jpg"/> <br />
+
+Once the portal confirmed it was successfully assigned, I logged out completely of the Entra portal, closed my browser tab, opened a new one, and logged back in. If I skip this, my current browser session won't know I have the new key, and the "Custom security attributes" menu will still look grayed out
+
+<img src="images/step 10.jpg"/> <br />
+
+So these are the assignments I, as the Global administrator, have as of now.
+
+Step 2.2: Create the Custom Attribute Definition
+
+- In the left-hand menu, I will navigate to: Manage -> Custom security attributes.
+
+<img src="images/step 11.jpg"/> <br />
+
+<img src="images/step 12.jpg"/> <br />
+
+<img src="images/step 13.jpg"/> <br />
+
+<img src="images/step 14.jpg"/> <br />
+
+- Name: MergerData
+- Description: Contains classification data for corporate acquisitions.
+- Maximum attributes: 10
+- Click Save.
+
+Click on the newly created MergerData set from the list and click Add attribute
+
+- Name: isExecutive
+- Description: Identifies acquired, high-level executives.
+- Data type: Boolean (True/False)
+- User mutability: Set to Read-only (This ensures standard IT helpdesk workers cannot maliciously flip an account to "True").
+- Click Save.
+
+<img src="images/step 15.jpg"/> <br />
+
+<img src="images/step 16.jpg"/> <br />
+
+<img src="images/step 17.jpg"/> <br />
+
+
+### Phase 3: The Automated PowerShell Onboarding Engine. Now, I will build the automation pipeline. I will write a script that reads an HR document and provisions the subsidiary staff while instantly stamping them with our secure data classification tag.
 
 
 
@@ -102,8 +176,7 @@ The architecture establishes secure identity segregation using **Microsoft Entra
 
 
 
-
-
+<br /><br />
 
 ## 🔒 Security Concepts & Governance Matrix Demonstrated
 
