@@ -57,7 +57,7 @@ The architecture establishes secure identity segregation using **Microsoft Entra
 
 ### Phase 0: The Prerequisites Checklist. Before running any commands, To ensure my environment is configured correctly:
 
-- Open your Microsoft Entra Admin Center (entra.microsoft.com) using my Global Administrator account.
+- Open my Microsoft Entra Admin Center (entra.microsoft.com) using my Global Administrator account.
 - Open Windows PowerShell on my local machine by right-clicking it and selecting Run as Administrator.
 - Have a text editor open (like Notepad or VS Code) to prepare a CSV file.<br />
 
