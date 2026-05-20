@@ -8,13 +8,13 @@ Built by <span style="color:#0078D4;">Divine Oguamanam</span>
 
 ---
 
-<h2>📖 Project Overview</h2>
+<h2>Project Overview</h2>
 
 In enterprise environments, over-provisioning administrative privileges creates a massive attack surface and increases the blast radius of credential compromise. This project demonstrates a production-grade Identity and Access Management (IAM) governance model implemented within **NexusCorp Global** for its **New York Regional Branch**.
 
 The architecture establishes secure identity segregation using **Microsoft Entra ID Administrative Units (AUs)**, scoped **Role-Based Access Control (RBAC)**, and **delegated business resource ownership**. By restricting regional administrators' control to localized containers and offloading everyday communication group management directly to departmental heads, this deployment successfully enforces the **Principle of Least Privilege (PoLP)** and decouples control-plane configuration from daily data-plane collaboration.
 
-<h3>🔑 Key Security Architecture Pillars</h3>
+<h3> Key Security Architecture Pillars</h3>
 
 - **Least Privilege Access (PoLP):** Eliminating directory-wide standing privileges for regional staff.
 - **Scoped Administration Boundaries:** Utilizing Administrative Units to segment tenant control lines.
@@ -24,7 +24,7 @@ The architecture establishes secure identity segregation using **Microsoft Entra
 
 <br />
 
-<h2>🛠️ Technologies, Frameworks, and Tools</h2>
+<h2>Technologies, Frameworks, and Tools</h2>
 
 - **Directory Service Platform:** Microsoft Entra ID (Azure Active Directory)
 - **Control Interface:** Microsoft Azure Portal & Entra Admin Center (`entra.microsoft.com`)
@@ -35,7 +35,7 @@ The architecture establishes secure identity segregation using **Microsoft Entra
 
 ---
 
-<h2>💻 System & Lab Environment Baseline</h2>
+<h2>System & Lab Environment Baseline</h2>
 
 - **Identity Cloud Provider:** Microsoft Entra ID Developer Sandbox Tenant
 - **Enterprise Root Domain:** `syskko.onmicrosoft.com`
@@ -44,7 +44,7 @@ The architecture establishes secure identity segregation using **Microsoft Entra
 
 ---
 
-<h2>🎯 Core Engineering Objectives</h2>
+<h2> Core Engineering Objectives</h2>
 
 1. **Isolate Regional Directory Management:** Provision a dedicated New York Administrative Unit (`NY-Administrative-Unit`) to serve as a secure regional boundary.
 2. **Implement Scoped Privileged Identities:** Assign the `Hybrid Identity Administrator` role to a regional lead, restricting administrative power strictly to the New York container.
@@ -52,16 +52,6 @@ The architecture establishes secure identity segregation using **Microsoft Entra
 4. **Delegate Collaborative Data Ownership:** Establish a Microsoft 365 Group (`NY-Marketing-Group`) and assign a standard non-admin employee as the owner to delegate day-to-day roster operations.
 5. **Validate Perimeter Security Boundaries:** Log in as both the scoped regional admin and the standard group owner to run a validation matrix, confirming that neither account can break out of its assigned directory scope.
 
----
-
-<h2>🏗️ Architecture & Privilege Segmentation Overview</h2>
-
-<p align="center">
-<b>NexusCorp Global - New York Regional IAM Structure</b> <br/>
-<img src="images/step1.png" height="80%" width="80%" alt="Architecture Overview"/>
-</p>
-
----
 
 <h2>🚀 Step-by-Step Enterprise Implementation Walkthrough</h2>
 
